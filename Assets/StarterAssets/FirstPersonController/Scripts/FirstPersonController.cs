@@ -71,6 +71,8 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		
+		private bool _disabled;
 
 		private const float _threshold = 0.01f;
 
@@ -193,7 +195,12 @@ namespace StarterAssets
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
 			}
-
+			
+			if (_disabled)
+			{
+				_speed = 0.0f;
+			}
+			
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
@@ -263,6 +270,11 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		public void SetDisabled(bool isDisabled)
+		{
+			_disabled = isDisabled;
 		}
 	}
 }
