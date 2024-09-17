@@ -23,9 +23,6 @@ public class Termite : MonoBehaviour
     private AnimationCurve animationCurve;
     
     [SerializeField]
-    private float sideStepPower = 2f;
-    
-    [SerializeField]
     private float killDistance;
     
     private Player _player;
@@ -35,6 +32,7 @@ public class Termite : MonoBehaviour
     private Vector3 _lastPlayerPosition;
     
     private CoroutineHandle _currentCoroutine;
+    private bool _isStunned;
 
     private void Start()
     {
@@ -43,10 +41,17 @@ public class Termite : MonoBehaviour
         
         _lastPlayerPosition = _player.transform.position;
         _moveTimer = 0f;
+        
+        gameObject.layer = LayerMask.NameToLayer("Termite");
     }
 
     private void Update()
     {
+        if (_isStunned)
+        {
+            return;
+        }
+        
         if (Vector3.Distance(_player.transform.position, transform.position) < killDistance)
         {
             if (_currentCoroutine.IsValid)
@@ -60,6 +65,11 @@ public class Termite : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_isStunned)
+        {
+            return;
+        }
+        
         if (transform.position.y < 0)
         {
             transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
@@ -99,4 +109,46 @@ public class Termite : MonoBehaviour
 
         _currentCoroutine = new CoroutineHandle();
     }
+
+    public void Stun(float stunDuration)
+    {
+        _isStunned = true;
+        
+        if (_currentCoroutine.IsValid)
+        {
+            Timing.KillCoroutines(_currentCoroutine);
+        }
+        
+        _currentCoroutine = Timing.RunCoroutine(_WaitForStunEnd(stunDuration));
+    }
+
+    private IEnumerator<float> _WaitForStunEnd(float stunDuration)
+    {
+        yield return Timing.WaitForSeconds(stunDuration);
+        
+        _isStunned = false;
+        _currentCoroutine = new CoroutineHandle();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

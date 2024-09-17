@@ -11,6 +11,7 @@ using TMPro;
 using UnityEditor;
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -20,30 +21,63 @@ public class Player : MonoBehaviour
     private float interactRange = 2f;
     
     [SerializeField]
-    private LayerMask interactionLayers;
-
-    [SerializeField]
-    public TextMeshProUGUI interactText;
+    private Transform currentItemTransform;
+    
+    public Inventory Inventory { get; private set; }
+    
+    private FirstPersonController _firstPersonController;
+    private Collider[] _colliders; 
     
     [SerializeField]
-    public TextMeshProUGUI cantInteractText;
-
-    private Collider[] _colliders;
-
-    public Inventory Inventory { get; set; }
-    public FirstPersonController FirstPersonController { get; set; }
+    private LayerMask interactionLayers;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            throw new System.Exception("Player already exists");
+        } 
+        
         Instance = this;        
         
         _colliders = new Collider[30];
 
         Inventory = GetComponent<Inventory>();
-        FirstPersonController = GetComponent<FirstPersonController>();
+        _firstPersonController = GetComponent<FirstPersonController>();
+        
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private void Update()
+    {
+        RefreshInventory();
+        CheckForInteractables();
+    }
+ 
+    private void RefreshInventory()
+    {
+        if (Inventory == null)
+        {
+            return;
+        }
+        
+        if (Mouse.current.scroll.ReadValue().y > 0)
+        {
+            Inventory.SelectPrevious();
+        }
+        
+        if (Mouse.current.scroll.ReadValue().y < 0)
+        {
+            Inventory.SelectNext();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Inventory.currentItem?.Use(this);
+        }
+    }
+
+    private void CheckForInteractables()
     {
         var hits = Physics.OverlapSphereNonAlloc(transform.position, interactRange, _colliders, interactionLayers);
 
@@ -54,34 +88,38 @@ public class Player : MonoBehaviour
         
         foreach (var interactableObject in _colliders.Where(x => x != null))
         {
-            if (interactableObject.TryGetComponent(out IInteractable interactable))
+            if (!interactableObject.TryGetComponent(out IInteractable interactable))
             {
-                if (interactable.CanInteract(this))
-                {
-                    Debug.Log("Press E to interact");
-                
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {                
-                        Debug.Log("Interacted");
+                continue;
+            }
 
-                        interactable.Interact(this);
-                    }
-                }
-                else
+            if (interactable.CanInteract(this))
+            {
+                Debug.Log("Press E to interact");
+
+                if (!Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Can't interact");
+                    continue;
                 }
+
+                Debug.Log("Interacted");
+
+                interactable.Interact(this);
+            }
+            else
+            {
+                Debug.Log("Can't interact");
             }
         }
     }
 
     public void Freeze()
     {
-        FirstPersonController.SetDisabled(true);
+        _firstPersonController.SetDisabled(true);
     }
 
     public void Free()
     {
-        FirstPersonController.SetDisabled(false);
+        _firstPersonController.SetDisabled(false);
     }
 }

@@ -12,7 +12,7 @@ namespace Activities
     public class RequireItemStation : MonoBehaviour, IInteractable
     {
         [SerializeField]
-        public ItemData requiredItemData;
+        public Item requiredItem;
         
         [SerializeField]
         protected float interactTime;
@@ -21,14 +21,14 @@ namespace Activities
         
         public void Interact(Player player)
         {                    
-            player.Inventory.Remove(requiredItemData);
+            player.Inventory.Remove(requiredItem);
             
             Timing.RunCoroutine(_Interact(player));
         }
         
         public bool CanInteract(Player player)
         {
-            return player.Inventory.Contains(requiredItemData);
+            return player.Inventory.Contains(requiredItem.ItemData);
         }
 
         private IEnumerator<float> _Interact(Player player)

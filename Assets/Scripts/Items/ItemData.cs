@@ -2,7 +2,7 @@
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "ItemData", menuName = "Items/ItemData", order = 1)]
+    [CreateAssetMenu(fileName = "ItemData", menuName = "ItemData", order = 1)]
     public class ItemData : ScriptableObject
     {
         public int id;

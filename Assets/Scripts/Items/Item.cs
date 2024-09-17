@@ -11,9 +11,6 @@ namespace Items
         [SerializeField]
         private ItemData itemData;
         public ItemData ItemData => itemData;
-
-        [SerializeField]
-        private float pickUpRange;
         
         private SphereCollider _collider;
 
@@ -21,18 +18,36 @@ namespace Items
         {
             _collider = GetComponent<SphereCollider>();
             _collider.radius = itemData.pickUpRange;
+            
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
         }
 
         public void Interact(Player player)
         {
-            player.Inventory.Add(itemData);
+            ItemInteract(player);
+        }
+ 
+        protected virtual void ItemInteract(Player player)
+        {
+            player.Inventory.Add(this);
             
-            Destroy(gameObject,0.1f);
+                
+            //Destroy(gameObject,0.1f);
         }
 
         public bool CanInteract(Player player)
         {
+            return ItemCanInteract();
+        }
+
+        protected virtual bool ItemCanInteract()
+        {
             return true;
+        }
+
+        public virtual void Use(Player player)
+        {
+            Debug.Log("This item cannot be used as a weapon");
         }
     }
 }

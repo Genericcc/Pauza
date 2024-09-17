@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3506613770143435270}
   - component: {fileID: 7165159259181723605}
   - component: {fileID: 618803124526409845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Termite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
