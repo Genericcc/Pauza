@@ -29,10 +29,13 @@ namespace Items
  
         protected virtual void ItemInteract(Player player)
         {
-            player.Inventory.Add(this);
+            var newItem = Instantiate(this);
+            var sphereCollider = newItem.GetComponent<SphereCollider>();
+            Destroy(sphereCollider);
             
-                
-            //Destroy(gameObject,0.1f);
+            player.Inventory.Add(newItem);
+            
+            Destroy(gameObject);
         }
 
         public bool CanInteract(Player player)

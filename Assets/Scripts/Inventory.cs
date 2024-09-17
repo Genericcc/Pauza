@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Transform itemContainer;
     
+    [SerializeField]
+    private Transform currentItemTransform;
+    
     public List<Item> items;
 
     public Item currentItem;
@@ -29,10 +32,17 @@ public class Inventory : MonoBehaviour
     {                        
         items.Add(item);
 
-        item.transform.position = itemContainer.position;
         item.transform.SetParent(itemContainer, false);
 
-        currentItem = item;
+        if (item is SprayItem)
+        {
+            item.transform.position = currentItemTransform.position;
+            currentItem = item;
+        }
+        else
+        {
+            item.transform.position = itemContainer.position;
+        }
         
         Debug.Log("Item added");
     }

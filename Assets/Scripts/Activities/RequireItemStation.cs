@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Items;
@@ -17,8 +18,15 @@ namespace Activities
         [SerializeField]
         protected float interactTime;
         
+        private Material _material;
         private float _currentInteractTime;
-        
+
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>().material;
+            _material.color = Color.red;
+        }
+
         public void Interact(Player player)
         {                    
             player.Inventory.Remove(requiredItem);
@@ -44,6 +52,7 @@ namespace Activities
                 yield return Timing.WaitForOneFrame;
             }
 
+            _material.color = Color.green;
             player.Free();
         }
     }

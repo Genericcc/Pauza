@@ -124,4 +124,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  stunDuration: 2
+  particleSystemPrefab: {fileID: 2192027807692956946, guid: 040e4f7e43649e84e91a251e5b19d892,
+    type: 3}
+  stunDuration: 4

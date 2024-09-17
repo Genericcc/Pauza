@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace Items
 {
-    public class SprayItem : Item, IInteractable
+    public class SprayItem : Item
     {
         public float maxDistance = 5f;
         public float sprayRadius = 2f;
         public LayerMask layerMask;
+        public ParticleSystem particleSystemPrefab;
         
         public float stunDuration = 2f;
 
@@ -29,7 +30,7 @@ namespace Items
                 
                 if (collider.gameObject.TryGetComponent<Termite>(out var termite))
                 {
-                    termite.Stun(stunDuration);
+                    termite.Stun(stunDuration, particleSystemPrefab);
                 }
             }
         }

@@ -20,9 +20,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float interactRange = 2f;
     
-    [SerializeField]
-    private Transform currentItemTransform;
-    
     public Inventory Inventory { get; private set; }
     
     private FirstPersonController _firstPersonController;
@@ -30,6 +27,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private LayerMask interactionLayers;
+
+    private bool _isOccupied;
 
     private void Awake()
     {
@@ -50,13 +49,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        RefreshInventory();
+        HandleInventory();
         CheckForInteractables();
     }
  
-    private void RefreshInventory()
+    private void HandleInventory()
     {
-        if (Inventory == null)
+        if (Inventory == null || _isOccupied)
         {
             return;
         }
@@ -115,11 +114,13 @@ public class Player : MonoBehaviour
 
     public void Freeze()
     {
+        _isOccupied = true;
         _firstPersonController.SetDisabled(true);
     }
 
     public void Free()
     {
+        _isOccupied = false;
         _firstPersonController.SetDisabled(false);
     }
 }
