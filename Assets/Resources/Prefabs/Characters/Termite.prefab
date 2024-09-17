@@ -206,8 +206,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  sideStepPower: 1
-  killDistance: 0.35
+  killDistance: 1
 --- !u!65 &618803124526409845
 BoxCollider:
   m_ObjectHideFlags: 0
