@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using LevelPOIs;
+
 using MEC;
 
 using UnityEngine;
@@ -34,33 +36,54 @@ public class Termite : MonoBehaviour
     private CoroutineHandle _currentCoroutine;
     private bool _isStunned;
     private ParticleSystem _currentParticles;
-
+    
+    [SerializeField]
+    private float attackSpeed;
+    
+    private float _attackTimer;
+    private TermiteSpawnPoint[] _spawnPoints;        
+    
+    public ParticleSystem particleSystemPrefab;
+    
     private void Start()
     {
         _player = Player.Instance;
         _rigidBody = GetComponent<Rigidbody>();
+        _spawnPoints = FindObjectsOfType<TermiteSpawnPoint>();
         
         _lastPlayerPosition = _player.transform.position;
         _moveTimer = 0f;
+        _attackTimer = 0f;
         
         gameObject.layer = LayerMask.NameToLayer("Termite");
     }
 
     private void Update()
     {
+        if (_attackTimer > 0)
+        {
+            _attackTimer -= Time.deltaTime;
+        }
+        
         if (_isStunned)
         {
             return;
         }
         
-        if (Vector3.Distance(_player.transform.position, transform.position) < killDistance)
+        if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
         {
             if (_currentCoroutine.IsValid)
             {
                 Timing.KillCoroutines(_currentCoroutine);
             }
+
+            _player.Damage();
+
+            _attackTimer = attackSpeed;
             
-            SceneManager.LoadScene(0);
+            transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
+            
+            Stun(2f);
         }
     }
 
@@ -111,7 +134,7 @@ public class Termite : MonoBehaviour
         _currentCoroutine = new CoroutineHandle();
     }
 
-    public void Stun(float stunDuration, ParticleSystem particleSystemPrefab)
+    public void Stun(float stunDuration)
     {
         _isStunned = true;
         
@@ -120,6 +143,7 @@ public class Termite : MonoBehaviour
             Timing.KillCoroutines(_currentCoroutine);
         }
         
+        Destroy(_currentParticles, 0.1f);
         _currentParticles = Instantiate(particleSystemPrefab, transform.position, Quaternion.identity);
         _currentParticles.Play();
         
@@ -132,7 +156,11 @@ public class Termite : MonoBehaviour
         
         _isStunned = false;
         _currentCoroutine = new CoroutineHandle();
-        Destroy(_currentParticles.gameObject);
+
+        if (_currentParticles != null)
+        {
+            Destroy(_currentParticles.gameObject);
+        }
     }
     
     

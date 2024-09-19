@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Activities;
+
+using MEC;
 
 using UnityEngine;
 
@@ -11,6 +14,11 @@ namespace Items
         [SerializeField]
         private ItemData itemData;
         public ItemData ItemData => itemData;
+
+        [SerializeField]
+        private float interactionTime;
+
+        private float _timeSinceInteractionStart;
         
         private SphereCollider _collider;
 
@@ -18,6 +26,7 @@ namespace Items
         {
             _collider = GetComponent<SphereCollider>();
             _collider.radius = itemData.pickUpRange;
+            _timeSinceInteractionStart = 0f;
             
             gameObject.layer = LayerMask.NameToLayer("Interactable");
         }
@@ -27,8 +36,12 @@ namespace Items
             ItemInteract(player);
         }
  
-        protected virtual void ItemInteract(Player player)
+        protected virtual IEnumerator<float> ItemInteract(Player player)
         {
+            Debug.Log("Picking up the item");
+            yield return Timing.WaitForSeconds(_timeSinceInteractionStart);
+            Debug.Log($"Picked up {gameObject.name}");
+            
             var newItem = Instantiate(this);
             var sphereCollider = newItem.GetComponent<SphereCollider>();
             Destroy(sphereCollider);

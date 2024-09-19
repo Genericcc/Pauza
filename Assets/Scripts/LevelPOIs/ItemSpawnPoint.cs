@@ -1,6 +1,4 @@
-﻿using System;
-
-using Items;
+﻿using Items;
 
 using Managers;
 
@@ -15,11 +13,10 @@ namespace LevelPOIs
 
         private Item _itemGameObject;
 
-        public Item SpawnItem()
+        public void SpawnItem()
         {
-            _itemGameObject = Instantiate(itemPrefab);
-            
-            return _itemGameObject;
+            _itemGameObject = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            LevelManager.Instance.spawnedItems.Add(_itemGameObject);
         }
     }
 }

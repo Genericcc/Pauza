@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Items;
 
@@ -7,24 +6,20 @@ using LevelPOIs;
 
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
+
+        public List<Item> spawnedItems = new ();
+        
+        private ItemSpawnPoint[] _spawnPoints;
         
         [SerializeField]
-        public List<Item> itemsToSpawn;
-        
-        [SerializeField]
-        public List<ItemSpawnPoint> itemSpawnPoints;
-
-        private List<Item> _spawnedItems;
-
-        public LevelManager(List<Item> spawnedItems)
-        {
-            _spawnedItems = spawnedItems;
-        }
+        public bool shuffleItemsOnStart;
 
         private void Awake()
         {
@@ -38,15 +33,34 @@ namespace Managers
 
         private void Start()
         {
-            SpawnItems();
+            _spawnPoints = FindObjectsOfType<ItemSpawnPoint>();
+
+            if (shuffleItemsOnStart)
+            {
+                ShuffleItems();
+            }
+            
+            foreach (var spawnPoint in _spawnPoints)
+            {
+                spawnPoint.SpawnItem();
+            }
         }
 
-        public void SpawnItems()
+        private void Update()
         {
-            foreach (var itemSpawnPoint in itemSpawnPoints)
+            //Check if player has gotten enough items
+        }
+
+        private void ShuffleItems()
+        {
+            var length = _spawnPoints.Length;
+            
+            for (var i = length - 1; i > 0; i--)
             {
-                var newItem = itemSpawnPoint.SpawnItem();
-                _spawnedItems.Add(newItem);
+                var randomIndex = Random.Range(0, i + 1);
+        
+                (_spawnPoints[i].itemPrefab, _spawnPoints[randomIndex].itemPrefab) = 
+                    (_spawnPoints[randomIndex].itemPrefab, _spawnPoints[i].itemPrefab);
             }
         }
     }
