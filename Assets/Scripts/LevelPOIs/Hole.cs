@@ -8,7 +8,7 @@ namespace LevelPOIs
     {
         private void Start()
         {
-            
+            gameObject.layer = LayerMask.NameToLayer("Hole");
         }
 
         private void OnTriggerEnter(Collider other)

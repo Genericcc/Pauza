@@ -33,7 +33,7 @@ namespace Items
 
         public void Interact(Player player)
         {
-            ItemInteract(player);
+            Timing.RunCoroutine(ItemInteract(player).CancelWith(player.gameObject));
         }
  
         protected virtual IEnumerator<float> ItemInteract(Player player)

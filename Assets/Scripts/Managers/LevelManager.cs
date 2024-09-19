@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+
+using Activities;
 
 using Items;
 
@@ -20,6 +23,9 @@ namespace Managers
         
         [SerializeField]
         public bool shuffleItemsOnStart;
+
+        [SerializeField]
+        private List<ActivityStation> winConditions;
 
         private void Awake()
         {
@@ -48,7 +54,10 @@ namespace Managers
 
         private void Update()
         {
-            //Check if player has gotten enough items
+            if (winConditions.All(x => x.isCompleted))
+            {
+                Debug.Log("You win!");
+            }
         }
 
         private void ShuffleItems()
