@@ -10,48 +10,44 @@ using UnityEngine;
 
 namespace Activities
 {
-    public class RequireItemStation : MonoBehaviour, IInteractable
+    public class RequireItemStation : ActivityStation
     {
         [SerializeField]
         public Item requiredItem;
         
-        [SerializeField]
-        protected float interactTime;
+        // [SerializeField]
+        // protected float interactTime;
         
         private Material _material;
-        private float _currentInteractTime;
+        //private float _currentInteractTime;
 
         private void Awake()
         {
             _material = GetComponent<MeshRenderer>().material;
             _material.color = Color.red;
         }
-
-        public void Interact(Player player)
-        {                    
-            player.Inventory.Remove(requiredItem);
-            
-            Timing.RunCoroutine(_Interact(player));
-        }
         
-        public bool CanInteract(Player player)
+        protected override bool CanInteractWith(Player player)
         {
             return player.Inventory.Contains(requiredItem.ItemData);
         }
 
-        private IEnumerator<float> _Interact(Player player)
-        {
+        protected override IEnumerator<float> _Interact(Player player)
+        {            
+            player.Inventory.Remove(requiredItem);
+
             player.Freeze();
-            _currentInteractTime = interactTime;
+            CurrentInteractTime = interactTime;
             
-            while (_currentInteractTime > 0)
+            while (CurrentInteractTime > 0)
             {
                 Debug.Log("Interacting...");
 
-                _currentInteractTime -= Time.deltaTime;
+                CurrentInteractTime -= Time.deltaTime;
                 yield return Timing.WaitForOneFrame;
             }
 
+            isCompleted = true;
             _material.color = Color.green;
             player.Free();
         }

@@ -11,12 +11,14 @@ namespace Activities
     {
         [SerializeField]
         protected float interactTime;
+        protected float CurrentInteractTime;
         
-        private float _currentInteractTime;
-        
+        public bool isCompleted;
+
         private void Start()
         {
-            _currentInteractTime = interactTime;
+            CurrentInteractTime = interactTime;
+            isCompleted = false;
         }
         
         public void Interact(Player player)
@@ -24,26 +26,31 @@ namespace Activities
             Timing.RunCoroutine(_Interact(player));
         }
 
-        private IEnumerator<float> _Interact(Player player)
+        protected virtual IEnumerator<float> _Interact(Player player)
         {
             player.Freeze();
-            _currentInteractTime = interactTime;
+            CurrentInteractTime = interactTime;
             
-            while (_currentInteractTime > 0)
+            while (CurrentInteractTime > 0)
             {
                 Debug.Log("Interacting...");
 
-                _currentInteractTime -= Time.deltaTime;
+                CurrentInteractTime -= Time.deltaTime;
                 yield return Timing.WaitForOneFrame;
             }
 
+            isCompleted = true;
             player.Free();
         }
 
         public bool CanInteract(Player player)
         {
-            return true;
+            return CanInteractWith(player);
         }
 
+        protected virtual bool CanInteractWith(Player player)
+        {
+            return true;
+        }
     }
 }

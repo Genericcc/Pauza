@@ -133,6 +133,11 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+			if (_disabled)
+			{
+				return;
+			}
+			
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
 			{
@@ -272,7 +277,7 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
-		public void SetDisabled(bool isDisabled)
+		public void Disable(bool isDisabled)
 		{
 			_disabled = isDisabled;
 		}
