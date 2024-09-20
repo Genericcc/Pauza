@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,15 +43,17 @@ public class Player : MonoBehaviour
         } 
         
         Instance = this;        
-        
-        _colliders = new Collider[30];
+    }
+
+    private void Start()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player");
 
         Inventory = GetComponent<Inventory>();
         _firstPersonController = GetComponent<FirstPersonController>();
         _cameraShake = CameraShake.Instance;
         
-        gameObject.layer = LayerMask.NameToLayer("Player");
-
+        _colliders = new Collider[30];
         _currentHp = maxHits;
     }
 
@@ -135,9 +138,9 @@ public class Player : MonoBehaviour
     {
         _currentHp--;
 
-        _cameraShake.ShakeCamera();
-        
-        //TripPlayer();
+       _cameraShake.ShakeCamera();
+       
+        TripPlayer();
 
         if (_currentHp == 0)
         {
