@@ -4,6 +4,8 @@ using System.Linq;
 
 using Activities;
 
+using LevelPOIs;
+
 using MEC;
 
 using StarterAssets;
@@ -55,6 +57,13 @@ public class Player : MonoBehaviour
         
         _colliders = new Collider[30];
         _currentHp = maxHits;
+        
+        var spawnPoint = FindObjectOfType<PlayerSpawnPoint>();
+
+        if (spawnPoint != null)
+        {
+            transform.position = spawnPoint.transform.position;
+        }
     }
 
     private void Update()

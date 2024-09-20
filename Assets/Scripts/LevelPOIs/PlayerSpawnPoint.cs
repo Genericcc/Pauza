@@ -2,7 +2,7 @@
 
 namespace LevelPOIs
 {
-    public class TermiteSpawnPoint : MonoBehaviour
+    public class PlayerSpawnPoint : MonoBehaviour
     {
         private void Start()
         {
