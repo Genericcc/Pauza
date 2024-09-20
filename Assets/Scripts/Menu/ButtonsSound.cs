@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Menu
 {
-    public class Buttons : MonoBehaviour
+    public class ButtonsSound : MonoBehaviour
     {
         public AudioSource myFx;
         public AudioClip hoverFx;
