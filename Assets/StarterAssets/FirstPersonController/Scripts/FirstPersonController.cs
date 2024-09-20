@@ -279,6 +279,8 @@ namespace StarterAssets
 
 		public void Disable(bool isDisabled)
 		{
+			_input.cursorLocked = !isDisabled;
+			_input.cursorInputForLook = !isDisabled;
 			_disabled = isDisabled;
 		}
 	}

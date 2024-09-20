@@ -1,4 +1,6 @@
-﻿using Items;
+﻿using System;
+
+using Items;
 
 using Managers;
 
@@ -12,6 +14,12 @@ namespace LevelPOIs
         public Item itemPrefab;
 
         private Item _itemGameObject;
+
+        private void Start()
+        {
+            var meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer.enabled = false;
+        }
 
         public void SpawnItem()
         {

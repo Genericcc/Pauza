@@ -1,8 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Activities;
+
+using LevelPOIs;
 
 using MEC;
 
@@ -10,7 +11,6 @@ using StarterAssets;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     private Collider[] _colliders; 
     private bool _isOccupied;
     private int _currentHp;
+    
+    private PlayerSpawnPoint _spawnPoint;
 
     private void Awake()
     {
@@ -55,6 +57,13 @@ public class Player : MonoBehaviour
         
         _colliders = new Collider[30];
         _currentHp = maxHits;
+        
+        _spawnPoint = FindObjectOfType<PlayerSpawnPoint>();
+
+        if (_spawnPoint != null)
+        {
+            transform.position = _spawnPoint.transform.position;
+        }
     }
 
     private void Update()
@@ -144,7 +153,9 @@ public class Player : MonoBehaviour
 
         if (_currentHp == 0)
         {
-            SceneManager.LoadScene(0);
+            transform.position = _spawnPoint.transform.position;
+
+            //SceneManager.LoadScene(0);
         }
     }
 
@@ -177,9 +188,19 @@ public class Player : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return Timing.WaitForOneFrame;
         }
-    
+     
         transform.rotation = startRotation;
     
+        _firstPersonController.Disable(false);
+    }
+
+    public void OnMenuOpened()
+    {
+        _firstPersonController.Disable(true);
+    }
+
+    public void OnMenuClosed()
+    {
         _firstPersonController.Disable(false);
     }
 }
