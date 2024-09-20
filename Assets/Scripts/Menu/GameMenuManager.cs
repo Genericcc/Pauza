@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Menu
 {
@@ -53,7 +54,7 @@ namespace Menu
         
         public void Quit()
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 }
