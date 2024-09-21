@@ -109,7 +109,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  killDistance: 4
+  killDistance: 1.5
   recheckPositionInterval: 4
   attackSpeed: 3
   particleSystemPrefab: {fileID: 2192027807692956946, guid: 040e4f7e43649e84e91a251e5b19d892,
@@ -167,14 +167,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3846626141484945117}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4857988987632658859}
   m_Father: {fileID: 2873912906857812945}
-  m_LocalEulerAnglesHint: {x: 0, y: -163.877, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &5930099625291585858
 MeshFilter:
   m_ObjectHideFlags: 0
