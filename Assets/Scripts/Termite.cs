@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using LevelPOIs;
 
 using MEC;
 
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 using Random = UnityEngine.Random;
@@ -31,6 +33,12 @@ public class Termite : MonoBehaviour
     private Rigidbody _rigidBody;
 
     private float _moveTimer = 0f;
+    
+    [SerializeField]
+    private float recheckPositionInterval = 1f;    
+    private float _currentRecheckPositionInterval;
+
+    
     private Vector3 _lastPlayerPosition;
     
     private CoroutineHandle _currentCoroutine;
@@ -45,17 +53,29 @@ public class Termite : MonoBehaviour
     
     public ParticleSystem particleSystemPrefab;
     
+    [SerializeField]
+    private float jumpHeight;
+
+    [SerializeField]
+    private float sideStepModifier = 1;
+
+    private NavMeshAgent _navMeshAgent;
+    private Vector3 _lastPosition;
+
     private void Start()
     {
         _player = Player.Instance;
         _rigidBody = GetComponent<Rigidbody>();
         _spawnPoints = FindObjectsOfType<TermiteSpawnPoint>();
+        _navMeshAgent = FindObjectOfType<NavMeshAgent>();
         
         _lastPlayerPosition = _player.transform.position;
         _moveTimer = 0f;
         _attackTimer = 0f;
         
         gameObject.layer = LayerMask.NameToLayer("Termite");
+        
+        _lastPosition = transform.position;
     }
 
     private void Update()
@@ -70,6 +90,15 @@ public class Termite : MonoBehaviour
             return;
         }
         
+        // if (!_currentCoroutine.IsValid)
+        // {
+        //     _moveTimer = moveTime;
+        //     _lastPlayerPosition = _player.transform.position;
+        //     _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
+        // }
+        
+        _navMeshAgent.destination = _player.transform.position;
+        
         if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
         {
             if (_currentCoroutine.IsValid)
@@ -78,40 +107,39 @@ public class Termite : MonoBehaviour
             }
 
             _player.Damage();
-
             _attackTimer = attackSpeed;
             
             transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
-            
-            Stun(2f);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isStunned)
-        {
-            return;
-        }
-        
-        if (transform.position.y < 0)
-        {
-            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
-        }
-        
-        if (_player == null)
-        {
-            return;
+            Stun(1f);
         }
         
         _moveTimer -= Time.deltaTime;
+        
+      
+        
+        CheckForBrokenPosition();
+    }
 
-        if (!_currentCoroutine.IsValid)
+    private void CheckForBrokenPosition()
+    {
+        _currentRecheckPositionInterval -= Time.deltaTime;
+
+        if (_currentRecheckPositionInterval < 0)
         {
-            _moveTimer = moveTime;
-            _lastPlayerPosition = _player.transform.position;
-            _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
+            CheckPosition();
+            _currentRecheckPositionInterval = recheckPositionInterval;
         }
+    }
+
+    private void CheckPosition()
+    {
+        if (Vector3.Distance(_lastPosition, transform.position) < 1)
+        {
+            var closestSpawn = _spawnPoints.OrderBy(x => Vector3.Distance(_player.transform.position, x.transform.position)).First();
+            transform.position = closestSpawn.transform.position;
+        }
+
+        _lastPosition = transform.position;
     }
 
     private IEnumerator<float> _MoveTowardsPlayer(Vector3 lastPlayerPosition)
@@ -120,8 +148,13 @@ public class Termite : MonoBehaviour
         {
             var playerDir = Vector3.Normalize(lastPlayerPosition - transform.position);
             var random = Random.Range(0f, 1f);
-            var offset = animationCurve.Evaluate(random);
+            var offset = animationCurve.Evaluate(random) * sideStepModifier;
             playerDir = new Vector3(playerDir.x + offset, playerDir.y, playerDir.z + offset);
+
+            if (lastPlayerPosition.y > transform.position.y)
+            {
+                playerDir += new Vector3(0, jumpHeight, 0).normalized;
+            }
 
             var newPosition = transform.position + playerDir * (moveSpeed * Time.fixedDeltaTime);
             _rigidBody.MovePosition(newPosition);
