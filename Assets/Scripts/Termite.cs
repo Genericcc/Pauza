@@ -90,6 +90,13 @@ public class Termite : MonoBehaviour
             return;
         }
         
+        // if (!_currentCoroutine.IsValid)
+        // {
+        //     _moveTimer = moveTime;
+        //     _lastPlayerPosition = _player.transform.position;
+        //     _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
+        // }
+        
         _navMeshAgent.destination = _player.transform.position;
         
         if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
@@ -100,15 +107,23 @@ public class Termite : MonoBehaviour
             }
 
             _player.Damage();
-
             _attackTimer = attackSpeed;
             
             transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
-            
-            Stun(2f);
+            Stun(1f);
         }
+        
+        _moveTimer -= Time.deltaTime;
+        
+      
+        
+        CheckForBrokenPosition();
+    }
 
+    private void CheckForBrokenPosition()
+    {
         _currentRecheckPositionInterval -= Time.deltaTime;
+
         if (_currentRecheckPositionInterval < 0)
         {
             CheckPosition();
@@ -125,35 +140,6 @@ public class Termite : MonoBehaviour
         }
 
         _lastPosition = transform.position;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isStunned)
-        {
-            return;
-        }
-        
-        // if (transform.position.y < 0)
-        // {
-        //     transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
-        // }
-        
-        if (_player == null)
-        {
-            return;
-        }
-        
-        _moveTimer -= Time.deltaTime;
-        
-        
-
-        // if (!_currentCoroutine.IsValid)
-        // {
-        //     _moveTimer = moveTime;
-        //     _lastPlayerPosition = _player.transform.position;
-        //     _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
-        // }
     }
 
     private IEnumerator<float> _MoveTowardsPlayer(Vector3 lastPlayerPosition)
