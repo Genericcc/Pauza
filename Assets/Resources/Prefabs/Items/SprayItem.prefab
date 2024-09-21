@@ -119,11 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 488a1df2100ecbb41b002c7b259997a6, type: 2}
+  interactionTime: 0
   maxDistance: 2
   sprayRadius: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  particleSystemPrefab: {fileID: 2192027807692956946, guid: 040e4f7e43649e84e91a251e5b19d892,
-    type: 3}
   stunDuration: 4
