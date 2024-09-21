@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 7327577655928745466}
   - component: {fileID: 2834014275663142618}
   - component: {fileID: 1692491718370296327}
+  - component: {fileID: 471896231116265148}
   m_Layer: 9
   m_Name: Termite
   m_TagString: Untagged
@@ -292,6 +293,27 @@ MonoBehaviour:
     m_Bits: 64
   canPush: 1
   strength: 5
+--- !u!95 &471896231116265148
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846626141484945117}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4872878274202826980
 GameObject:
   m_ObjectHideFlags: 0
