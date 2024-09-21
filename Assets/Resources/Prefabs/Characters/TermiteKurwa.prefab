@@ -109,7 +109,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  killDistance: 1.5
+  killDistance: 1
   recheckPositionInterval: 4
   attackSpeed: 3
   particleSystemPrefab: {fileID: 2192027807692956946, guid: 040e4f7e43649e84e91a251e5b19d892,
