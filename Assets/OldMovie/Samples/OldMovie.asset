@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 0
     m_Value: 0.54
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   skipIterations:
     m_OverrideState: 1
     m_Value: 1
@@ -106,22 +106,22 @@ MonoBehaviour:
   active: 1
   m_Grain:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.091
   m_Noise:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3
   m_NoiseAlpha:
     m_OverrideState: 1
-    m_Value: 0.502
+    m_Value: 0.064
   m_Jolt:
     m_OverrideState: 1
-    m_Value: 0.307
+    m_Value: 0
   m_Fps:
     m_OverrideState: 1
-    m_Value: 27.2
+    m_Value: 30
   m_Vignette:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   m_GrainTex:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 5
