@@ -20,12 +20,13 @@ namespace Menu
         
         public void Play()
         {
-            Timing.RunCoroutine(_LoadLevel().CancelWith(gameObject));
-        }
+            //SceneManager.LoadScene(1);
+            Timing.RunCoroutine(_LoadLevel());
+        } 
 
         private IEnumerator<float> _LoadLevel()
         {
-            yield return Timing.WaitForSeconds(1);
+            yield return Timing.WaitForSeconds(1f);
             SceneManager.LoadScene(1);
         }
 
