@@ -13,13 +13,15 @@ namespace Activities
     public class RequireItemStation : ActivityStation
     {
         [SerializeField]
-        public Item requiredItem;
+        private Item requiredMainKeyItem;
         
-        // [SerializeField]
-        // protected float interactTime;
+        [SerializeField]
+        private Item cogPrefab;
+
+        [SerializeField]
+        private int numberOfRequiredCogs;
         
         private Material _material;
-        //private float _currentInteractTime;
 
         private void Awake()
         {
@@ -29,23 +31,39 @@ namespace Activities
         
         protected override bool CanInteractWith(Player player)
         {
-            return player.Inventory.Contains(requiredItem.ItemData);
+            if (!player.Inventory.Contains(requiredMainKeyItem.ItemData))
+            {
+                return false;
+            }
+
+            // if (!player.Inventory.items.Contains(requiredMainKeyItem.ItemData))
+            // {
+            //     return false;
+            // }
+
+
+
+            return true;
         }
 
         protected override IEnumerator<float> _Interact(Player player)
         {            
-            player.Inventory.Remove(requiredItem);
+            player.Inventory.Remove(requiredMainKeyItem);
 
             player.Freeze();
             CurrentInteractTime = interactTime;
-            
-            while (CurrentInteractTime > 0)
-            {
-                Debug.Log("Interacting...");
 
-                CurrentInteractTime -= Time.deltaTime;
-                yield return Timing.WaitForOneFrame;
-            }
+            yield return Timing.WaitForSeconds(interactTime);
+            
+            // CurrentInteractTime = interactTime;
+            //
+            // while (CurrentInteractTime > 0)
+            // {
+            //     Debug.Log("Interacting...");
+            //
+            //     CurrentInteractTime -= Time.deltaTime;
+            //     yield return Timing.WaitForOneFrame;
+            // }return Timing.WaitForOneFrame;
 
             isCompleted = true;
             _material.color = Color.green;
