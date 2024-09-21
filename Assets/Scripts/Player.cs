@@ -162,6 +162,11 @@ public class Player : MonoBehaviour
 
             //SceneManager.LoadScene(0);
         }
+
+        if (transform.position.y < 100f)
+        {
+            transform.position = _spawnPoint.transform.position;
+        }
     }
 
     private void TripPlayer()
