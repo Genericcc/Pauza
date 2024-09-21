@@ -70,6 +70,11 @@ public class Player : MonoBehaviour
     {
         HandleInventory();
         CheckForInteractables();
+
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     Time.timeScale = 0.2f;
+        // }
     }
  
     private void HandleInventory()
@@ -151,7 +156,7 @@ public class Player : MonoBehaviour
        
         TripPlayer();
 
-        if (_currentHp == 0)
+        if (_currentHp <= 0)
         {
             transform.position = _spawnPoint.transform.position;
 

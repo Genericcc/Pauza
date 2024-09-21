@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+
+using MEC;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +19,8 @@ namespace Menu
             _player = Player.Instance;
             _visual = transform.GetChild(0).gameObject;
             _isOpen = false;
+            
+            Resume();
         }
 
         private void Update()
@@ -54,6 +60,12 @@ namespace Menu
         
         public void Quit()
         {
+            Timing.RunCoroutine(_LoadLevel());
+        } 
+
+        private IEnumerator<float> _LoadLevel()
+        {
+            yield return Timing.WaitForSeconds(1f);
             SceneManager.LoadScene(0);
         }
     }
