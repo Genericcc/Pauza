@@ -41,8 +41,6 @@ namespace Activities
             //     return false;
             // }
 
-
-
             return true;
         }
 
