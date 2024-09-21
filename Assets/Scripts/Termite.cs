@@ -115,8 +115,6 @@ public class Termite : MonoBehaviour
         
         _moveTimer -= Time.deltaTime;
         
-      
-        
         CheckForBrokenPosition();
     }
 

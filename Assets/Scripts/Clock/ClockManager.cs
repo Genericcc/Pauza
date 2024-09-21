@@ -18,10 +18,13 @@ namespace Clock
         [SerializeField]
         private float hourSpeed;
 
+        [SerializeField]
+        private bool counterClockwise;
+
         private void Update()
         {
-            minutePivot.transform.Rotate(Vector3.up, Time.deltaTime * minuteSpeed);
-            hourPivot.transform.Rotate(Vector3.up, Time.deltaTime * hourSpeed);
+            minutePivot.transform.Rotate(counterClockwise ? Vector3.forward : Vector3.back, Time.deltaTime * minuteSpeed);
+            hourPivot.transform.Rotate(counterClockwise ? Vector3.forward : Vector3.back, Time.deltaTime * hourSpeed);
         }
     }
 }
