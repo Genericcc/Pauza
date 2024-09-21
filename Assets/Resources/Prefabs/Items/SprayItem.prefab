@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4332637167445107739}
   - component: {fileID: 5162216579343329058}
   m_Layer: 0
-  m_Name: SprayItem_PH
+  m_Name: SprayItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
