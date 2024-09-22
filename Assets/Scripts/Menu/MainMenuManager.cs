@@ -27,7 +27,7 @@ namespace Menu
         private IEnumerator<float> _LoadLevel()
         {
             yield return Timing.WaitForSeconds(1f);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         public void OpenControls()

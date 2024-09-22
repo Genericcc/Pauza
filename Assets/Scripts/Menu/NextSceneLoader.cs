@@ -20,7 +20,7 @@ namespace Menu
 
         public void LoadNextScene()
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         private void OnDisable()

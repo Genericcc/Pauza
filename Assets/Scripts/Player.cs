@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
             //SceneManager.LoadScene(0);
         }
 
-        if (transform.position.y < 100f)
+        if (transform.position.y < 10f)
         {
             transform.position = _spawnPoint.transform.position;
         }
