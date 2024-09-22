@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour
 
     public Item currentItem;
 
+    public List<Item> cogs;
+
     private void Start()
     {
         items = new List<Item>();
@@ -29,7 +31,13 @@ public class Inventory : MonoBehaviour
     }
 
     public void Add(Item item)
-    {                        
+    {
+        if (item.ItemData.id == 333)
+        {
+            cogs.Add(item);
+            return;
+        }
+        
         items.Add(item);
 
         item.transform.SetParent(itemContainer, false);

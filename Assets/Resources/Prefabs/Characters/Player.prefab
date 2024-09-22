@@ -266,8 +266,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   interactRange: 1.5
-  maxHits: 6
-  tripTime: 0.5
+  tripTime: 0.75
+  fixParticles: {fileID: 3176172875780110808, guid: dae9461a8333375489cd363c8c8df58c,
+    type: 3}
 --- !u!114 &8793592465988056893
 MonoBehaviour:
   m_ObjectHideFlags: 0

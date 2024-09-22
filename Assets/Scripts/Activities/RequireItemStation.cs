@@ -28,10 +28,10 @@ namespace Activities
                 return false;
             }
 
-            // if (!player.Inventory.items.Contains(requiredMainKeyItem.ItemData))
-            // {
-            //     return false;
-            // }
+            if (player.Inventory.cogs.Count < numberOfRequiredCogs)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -41,6 +41,9 @@ namespace Activities
             player.Inventory.Remove(requiredMainKeyItem);
 
             player.Freeze();
+            
+            var particles = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
+            
             CurrentInteractTime = interactTime;
 
             yield return Timing.WaitForSeconds(interactTime);
@@ -54,6 +57,8 @@ namespace Activities
             //     CurrentInteractTime -= Time.deltaTime;
             //     yield return Timing.WaitForOneFrame;
             // }return Timing.WaitForOneFrame;
+            
+            Destroy(particles);
 
             isCompleted = true;
             player.Free();

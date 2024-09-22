@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
 
     private PlayerSpawnPoint _spawnPoint;
 
+    [SerializeField]
+    public ParticleSystem fixParticles;
+
     private void Awake()
     {
         if (Instance != null)
