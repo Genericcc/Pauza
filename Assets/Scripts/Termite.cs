@@ -123,7 +123,7 @@ public class Termite : MonoBehaviour
             Timing.KillCoroutines(_currentCoroutine);
         }
 
-        yield return Timing.WaitForSeconds(1f);
+        yield return Timing.WaitForSeconds(2f);
 
         _player.Damage();
         _attackTimer = attackSpeed;
