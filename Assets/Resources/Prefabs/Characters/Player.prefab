@@ -215,8 +215,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.81438, y: 0.81438, z: 0.81439}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9195195919713266903}
   - {fileID: 547386046604027717}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  SprintSpeed: 6
+  SprintSpeed: 10
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemContainer: {fileID: 5823333628206489749}
-  currentItemTransform: {fileID: 0}
+  currentItemTransform: {fileID: 90655884224247391}
   items: []
   currentItem: {fileID: 0}
 --- !u!1 &3831317758489395262
@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 3831317758489395262}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.372, y: 1.031, z: 1.128}
+  m_LocalPosition: {x: 0.372, y: 1.031, z: 0.777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
