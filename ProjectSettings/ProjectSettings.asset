@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Pauza
-  defaultCursor: {fileID: 2800000, guid: 3f9132bc572906f43b82bf450cab3b6b, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 1f6468bc83c463542ad9d7d57cf77d7b, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

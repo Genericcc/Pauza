@@ -2388,7 +2388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a8cb1d008c74041a1f30b6d8d99101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 3f9132bc572906f43b82bf450cab3b6b, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 1f6468bc83c463542ad9d7d57cf77d7b, type: 3}
 --- !u!4 &850598123
 Transform:
   m_ObjectHideFlags: 0
@@ -6543,6 +6543,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930285847}
   m_CullTransparentMesh: 1
+--- !u!1 &1946502295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946502297}
+  - component: {fileID: 1946502296}
+  m_Layer: 0
+  m_Name: Serduszka Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1946502296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946502295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0575dd38bb91e8f439e0436e88e4fc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Heart1: {fileID: 21300000, guid: 4778fb94ef27e854e88ce4d94a287825, type: 3}
+  Heart2: {fileID: 21300000, guid: 10107cdd679a448469fdfbe51d3d641e, type: 3}
+  Heart3: {fileID: 21300000, guid: 198059ec89ba4484dbfa83852b806bd5, type: 3}
+--- !u!4 &1946502297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946502295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 627.43774, y: 530.73145, z: -180.75427}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033254803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7156,3 +7203,4 @@ SceneRoots:
   - {fileID: 456048246}
   - {fileID: 1304601290}
   - {fileID: 850598123}
+  - {fileID: 1946502297}
