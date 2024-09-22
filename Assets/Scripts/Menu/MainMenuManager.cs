@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using MEC;
+
+using Unity.VisualScripting;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +20,12 @@ namespace Menu
         
         [SerializeField]
         public GameObject buttonsPanel;
-        
+
+        private void Start()
+        {
+            Cursor.visible = true;
+        }
+
         public void Play()
         {
             //SceneManager.LoadScene(1);

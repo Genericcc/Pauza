@@ -719,7 +719,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2139477712}
-        m_TargetAssemblyTypeName: Menu.MainMenuManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Menu.GameWonMenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -1238,12 +1238,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2139477707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91786d4d00de493985827614cece56b7, type: 3}
+  m_Script: {fileID: 11500000, guid: acbbfa2ec91d43278f72684bbb9abcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlsView: {fileID: 0}
-  creditsView: {fileID: 0}
-  buttonsPanel: {fileID: 581838264}
+  quitButton: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
