@@ -32,6 +32,8 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         _cinemachine = GetComponent<CinemachineVirtualCamera>();
+        
+        
     }
 
     public void ShakeCamera()

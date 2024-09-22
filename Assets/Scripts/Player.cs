@@ -11,6 +11,7 @@ using StarterAssets;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float interactRange;
     
-    [SerializeField]
-    private int maxHits;
+    // [SerializeField]
+    // private int maxHits;
     
     [SerializeField]
     private float tripTime;
@@ -53,10 +54,9 @@ public class Player : MonoBehaviour
 
         Inventory = GetComponent<Inventory>();
         _firstPersonController = GetComponent<FirstPersonController>();
-        _cameraShake = CameraShake.Instance;
         
         _colliders = new Collider[30];
-        _currentHp = maxHits;
+        _currentHp = 3;
         
         _spawnPoint = FindObjectOfType<PlayerSpawnPoint>();
 
@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
         {
             transform.position = _spawnPoint.transform.position;
         }
+        
+        _firstPersonController.Disable(false);
     }
 
     private void Update()
@@ -152,15 +154,13 @@ public class Player : MonoBehaviour
     {
         _currentHp--;
 
-       _cameraShake.ShakeCamera();
+        CameraShake.Instance.ShakeCamera();
        
         TripPlayer();
 
         if (_currentHp <= 0)
         {
-            transform.position = _spawnPoint.transform.position;
-
-            //SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (transform.position.y < 10f)

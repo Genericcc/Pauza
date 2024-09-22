@@ -191,12 +191,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2503617913283794957}
   - component: {fileID: 4035214523026234407}
+  - component: {fileID: 2099962115506813197}
   - component: {fileID: 8793592465988056893}
   - component: {fileID: 3045140855007083250}
   - component: {fileID: 8893484539877551198}
   - component: {fileID: 50500251342830904}
   - component: {fileID: 4931466962248580154}
-  - component: {fileID: 2099962115506813197}
   - component: {fileID: 3732578006454871584}
   m_Layer: 7
   m_Name: Player
@@ -250,6 +250,24 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!114 &2099962115506813197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672249704296128722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa6f3ff560e430449b898c5004c24fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  interactRange: 1.5
+  maxHits: 6
+  tripTime: 0.5
 --- !u!114 &8793592465988056893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,24 +459,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &2099962115506813197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672249704296128722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa6f3ff560e430449b898c5004c24fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  interactRange: 1.5
-  maxHits: 6
-  tripTime: 0.5
 --- !u!114 &3732578006454871584
 MonoBehaviour:
   m_ObjectHideFlags: 0
