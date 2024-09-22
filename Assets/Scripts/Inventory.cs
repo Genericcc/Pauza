@@ -54,34 +54,21 @@ public class Inventory : MonoBehaviour
 
     public void Remove(Item item)
     {
-        if (items.Any())
+        if (item is SprayItem)
         {
-            var matchingItem = items.FirstOrDefault(x => x.ItemData.id == item.ItemData.id);
+            Destroy(item.gameObject);
+            currentItem = null;
+        }
 
-            if (matchingItem == currentItem)
-            {
-                if (items.Count > 2)
-                {
-                    SelectNext();
-                }
-                else
-                {
-                    Destroy(currentItem.gameObject);
-                    currentItem = null;
-                }
-            }
-        
-        
-            var success = items.Remove(matchingItem);
-        
-            if (success)
-            {
-                Debug.Log("Item removed");
-            }
-            else
-            {
-                Debug.Log("Failed to remove");
-            }
+        var success = items.Remove(currentItem);
+
+        if (success)
+        {
+            Debug.Log("Item removed");
+        }
+        else
+        {
+            Debug.Log("Failed to remove");
         }
     }
 

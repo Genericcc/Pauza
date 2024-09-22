@@ -42,8 +42,11 @@ namespace Items
 
                 if (collider.gameObject.TryGetComponent<Termite>(out var termite))
                 {
-                    AudioSource.Play();
-               
+                    if (AudioSource != null)
+                    {
+                        AudioSource.Play();
+                    }
+
                     termite.Stun(stunDuration);
                 }
             }
