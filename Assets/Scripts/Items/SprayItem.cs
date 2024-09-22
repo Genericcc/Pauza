@@ -12,6 +12,12 @@ namespace Items
         
         public float stunDuration = 2f;
 
+        public AudioSource AudioSource { get; private set; }
+
+        private void Start()
+        {
+             AudioSource = GetComponent<AudioSource>();
+        }
         public override void Use(Player player)
         {
             Debug.Log("Spray and pray!");
@@ -26,9 +32,11 @@ namespace Items
             foreach (var collider in colliders)
             {
                 Debug.Log($"Collide with {collider.gameObject.name}");
-                
+
                 if (collider.gameObject.TryGetComponent<Termite>(out var termite))
                 {
+                    AudioSource.Play();
+               
                     termite.Stun(stunDuration);
                 }
             }
