@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -3344816657252546513}
   - component: {fileID: 7110177483418807697}
   - component: {fileID: 3684226543105131696}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BrokenClockStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   interactTime: 1
   isCompleted: 0
   requiredMainKeyItem: {fileID: 0}
+  blocker: {fileID: 0}
   numberOfRequiredCogs: 1
 --- !u!114 &7110177483418807697
 MonoBehaviour:
@@ -99,7 +100,7 @@ GameObject:
   - component: {fileID: 5080777040155777369}
   - component: {fileID: 7146039302363589824}
   - component: {fileID: 743816234440583214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2631283774205306089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +233,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695278302575860708}
     m_Modifications:
+    - target: {fileID: 2021164215768118760, guid: 09b48d678d9ab114a8fbdd04f62c2727,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3357076674181199220, guid: 09b48d678d9ab114a8fbdd04f62c2727,
         type: 3}
       propertyPath: m_Pivot.x
@@ -352,6 +358,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldUIPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5127782644767423413, guid: 09b48d678d9ab114a8fbdd04f62c2727,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5833449288939049308, guid: 09b48d678d9ab114a8fbdd04f62c2727,
         type: 3}
       propertyPath: m_text
@@ -439,6 +450,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695278302575860708}
     m_Modifications:
+    - target: {fileID: 502180458663665370, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 763063315362496357, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951522950502942665, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5862248375928902138, guid: 6a1958a580a204b44aff77b528723b1e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -509,6 +535,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6158709444777049872, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7514518498821726665, guid: 6a1958a580a204b44aff77b528723b1e,
         type: 3}
       propertyPath: m_Name
@@ -516,8 +547,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7514518498821726665, guid: 6a1958a580a204b44aff77b528723b1e,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514518498821726665, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582517194564519868, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896247085983671811, guid: 6a1958a580a204b44aff77b528723b1e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
