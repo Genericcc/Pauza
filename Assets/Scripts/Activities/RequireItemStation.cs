@@ -52,6 +52,8 @@ namespace Activities
             var particles5 = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
             
             CurrentInteractTime = interactTime;
+            
+            Debug.Log("Interacting...");
 
             yield return Timing.WaitForSeconds(interactTime);
             
