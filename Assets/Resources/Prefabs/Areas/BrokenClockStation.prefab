@@ -49,11 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaabc3dac624b0280616aa9253d3cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTime: 0
+  interactTime: 1
   isCompleted: 0
   requiredMainKeyItem: {fileID: 0}
-  cogPrefab: {fileID: 0}
-  numberOfRequiredCogs: 0
+  numberOfRequiredCogs: 1
 --- !u!114 &7110177483418807697
 MonoBehaviour:
   m_ObjectHideFlags: 0

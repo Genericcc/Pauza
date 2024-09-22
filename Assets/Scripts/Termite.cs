@@ -120,8 +120,8 @@ public class Termite : MonoBehaviour
 
         if (_isStunned)
         {
-            //TODO
-            //break attack
+            _navMeshAgent.speed = walkSpeed;
+            yield break;
         }
 
         _player.Damage();
@@ -190,7 +190,7 @@ public class Termite : MonoBehaviour
         _currentParticles = Instantiate(particleSystemPrefab, transform.position, Quaternion.identity);
         _currentParticles.Play();
         
-        _currentCoroutine = Timing.RunCoroutine(_WaitForStunEnd(stunDuration));
+        _currentCoroutine = Timing.RunCoroutine(_WaitForStunEnd(stunDuration).CancelWith(gameObject));
     }
 
     private IEnumerator<float> _WaitForStunEnd(float stunDuration)

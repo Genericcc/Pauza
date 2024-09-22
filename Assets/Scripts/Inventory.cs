@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
         if (item.ItemData.id == 333)
         {
             cogs.Add(item);
+            Debug.Log("Cog added");
             return;
         }
         
@@ -47,40 +48,40 @@ public class Inventory : MonoBehaviour
             item.transform.position = currentItemTransform.position;
             currentItem = item;
         }
-        else
-        {
-            item.transform.position = itemContainer.position;
-        }
         
-        Debug.Log("Item added");
+        Debug.Log("Spray added");
     }
 
     public void Remove(Item item)
     {
-        var matchingItem = items.FirstOrDefault(x => x.ItemData.id == item.ItemData.id);
-
-        if (matchingItem == currentItem)
+        if (items.Any())
         {
-            if (items.Count > 2)
+            var matchingItem = items.FirstOrDefault(x => x.ItemData.id == item.ItemData.id);
+
+            if (matchingItem == currentItem)
             {
-                SelectNext();
+                if (items.Count > 2)
+                {
+                    SelectNext();
+                }
+                else
+                {
+                    Destroy(currentItem.gameObject);
+                    currentItem = null;
+                }
+            }
+        
+        
+            var success = items.Remove(matchingItem);
+        
+            if (success)
+            {
+                Debug.Log("Item removed");
             }
             else
             {
-                currentItem = null;
+                Debug.Log("Failed to remove");
             }
-        }
-        
-        
-        var success = items.Remove(matchingItem);
-        
-        if (success)
-        {
-            Debug.Log("Item removed");
-        }
-        else
-        {
-            Debug.Log("Failed to remove");
         }
     }
 

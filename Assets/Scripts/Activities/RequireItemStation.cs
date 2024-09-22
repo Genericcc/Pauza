@@ -14,18 +14,18 @@ namespace Activities
     {
         [SerializeField]
         private Item requiredMainKeyItem;
-        
-        [SerializeField]
-        private Item cogPrefab;
 
         [SerializeField]
         private int numberOfRequiredCogs;
         
         protected override bool CanInteractWith(Player player)
         {
-            if (!player.Inventory.Contains(requiredMainKeyItem.ItemData))
+            if (requiredMainKeyItem != null)
             {
-                return false;
+                if (!player.Inventory.Contains(requiredMainKeyItem.ItemData))
+                {
+                    return false;
+                }
             }
 
             if (player.Inventory.cogs.Count < numberOfRequiredCogs)
@@ -43,6 +43,10 @@ namespace Activities
             player.Freeze();
             
             var particles = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
+            var particles2 = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
+            var particles3 = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
+            var particles4 = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
+            var particles5 = Instantiate(player.fixParticles, transform.position, Quaternion.identity);
             
             CurrentInteractTime = interactTime;
 
@@ -58,7 +62,11 @@ namespace Activities
             //     yield return Timing.WaitForOneFrame;
             // }return Timing.WaitForOneFrame;
             
-            Destroy(particles);
+            Destroy(particles.gameObject);
+            Destroy(particles2.gameObject);
+            Destroy(particles3.gameObject);
+            Destroy(particles4.gameObject);
+            Destroy(particles5.gameObject);
 
             isCompleted = true;
             player.Free();

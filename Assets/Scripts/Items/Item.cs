@@ -18,7 +18,7 @@ namespace Items
         [SerializeField]
         private float interactionTime;
 
-        private float _timeSinceInteractionStart;
+        protected float _timeSinceInteractionStart;
         
         private SphereCollider _collider;
 
@@ -38,17 +38,17 @@ namespace Items
  
         protected virtual IEnumerator<float> ItemInteract(Player player)
         {
-            Debug.Log("Picking up the item");
+            Debug.Log("Picking up cog");
             yield return Timing.WaitForSeconds(_timeSinceInteractionStart);
             Debug.Log($"Picked up {gameObject.name}");
             
-            var newItem = Instantiate(this);
-            var sphereCollider = newItem.GetComponent<SphereCollider>();
-            Destroy(sphereCollider);
+            gameObject.SetActive(false);
+            // var mesh = GetComponentInChildren<MeshRenderer>();
+            // Destroy(mesh);
+            Destroy(_collider);
             
-            player.Inventory.Add(newItem);
+            player.Inventory.Add(this);
             
-            Destroy(gameObject);
         }
 
         public bool CanInteract(Player player)
