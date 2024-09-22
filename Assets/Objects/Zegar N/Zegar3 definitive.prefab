@@ -127,8 +127,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 646757403747614101}
-  - component: {fileID: -2696945190649798705}
-  - component: {fileID: 6372916494838053287}
   m_Layer: 0
   m_Name: Zegar3 definitive
   m_TagString: Untagged
@@ -156,36 +154,6 @@ Transform:
   - {fileID: 618292455023861734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2696945190649798705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639503408631805056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfaabc3dac624b0280616aa9253d3cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTime: 0
-  isCompleted: 0
-  requiredMainKeyItem: {fileID: 0}
-  cogPrefab: {fileID: 0}
-  numberOfRequiredCogs: 0
---- !u!114 &6372916494838053287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639503408631805056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469512ea50094ef99b1a14798cb12c7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiObject: {fileID: 2366556217209127937}
 --- !u!1001 &1134387486056130409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -529,12 +497,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09b48d678d9ab114a8fbdd04f62c2727, type: 3}
---- !u!1 &2366556217209127937 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5127782644767423413, guid: 09b48d678d9ab114a8fbdd04f62c2727,
-    type: 3}
-  m_PrefabInstance: {fileID: 7493489995965562804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5289620699414629056 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3357076674181199220, guid: 09b48d678d9ab114a8fbdd04f62c2727,
