@@ -61,13 +61,15 @@ public class Termite : MonoBehaviour
 
     private NavMeshAgent _navMeshAgent;
     private Vector3 _lastPosition;
+    private Animator _animator;
 
     private void Start()
     {
         _player = Player.Instance;
-        _rigidBody = GetComponent<Rigidbody>();
         _spawnPoints = FindObjectsOfType<TermiteSpawnPoint>();
         _navMeshAgent = FindObjectOfType<NavMeshAgent>();
+        _rigidBody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         
         _lastPlayerPosition = _player.transform.position;
         _moveTimer = 0f;
@@ -104,21 +106,32 @@ public class Termite : MonoBehaviour
 
         if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
         {
-            if (_currentCoroutine.IsValid)
-            {
-                Timing.KillCoroutines(_currentCoroutine);
-            }
-
-            _player.Damage();
-            _attackTimer = attackSpeed;
-            
-            transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
-            Stun(1f);
+            Timing.RunCoroutine(_Attack().CancelWith(gameObject));
         }
         
         _moveTimer -= Time.deltaTime;
         
         CheckForBrokenPosition();
+    }
+
+    private IEnumerator<float> _Attack()
+    {
+        _animator.Play("Attack");
+            
+        if (_currentCoroutine.IsValid)
+        {
+            Timing.KillCoroutines(_currentCoroutine);
+        }
+
+        yield return Timing.WaitForSeconds(1f);
+
+        _player.Damage();
+        _attackTimer = attackSpeed;
+        
+        transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
+        Stun(1f);
+        
+        _animator.Play("Idle");
     }
 
     private void CheckForBrokenPosition()
