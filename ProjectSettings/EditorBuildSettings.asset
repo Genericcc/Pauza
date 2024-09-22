@@ -15,8 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 2a3f91970f825cf48adcee9e9e4c3193
   - enabled: 1
-    path: Assets/Scenes/Pauza.unity
-    guid: 707acc8dffb72b144bb1ffbe1c965f3d
+    path: Assets/Scenes/Level1.unity
+    guid: 495d2e0c9bb2cc6469d573135761f8a3
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 258f76260e6f9ab4fb93c127d23736ef
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: b686b2c6831b48540acfa6da9a71950a
+  - enabled: 1
+    path: Assets/Scenes/GameWonScene.unity
+    guid: 380fc94f6cf2b6647a258ce4070c8f37
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}
