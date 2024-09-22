@@ -41,6 +41,8 @@ namespace Items
                     AudioSource.Play();
                
                     termite.Stun(stunDuration);
+                    
+                    player.Inventory.Remove(this);
                 }
             }
         }
