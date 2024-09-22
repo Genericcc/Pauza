@@ -39,6 +39,7 @@ namespace Managers
 
         private void Start()
         {
+            winConditions ??= new List<ActivityStation>();
             _spawnPoints = FindObjectsOfType<ItemSpawnPoint>();
 
             if (shuffleItemsOnStart)

@@ -96,9 +96,12 @@ public class Termite : MonoBehaviour
         //     _lastPlayerPosition = _player.transform.position;
         //     _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
         // }
-        
-        _navMeshAgent.destination = _player.transform.position;
-        
+
+        if (_navMeshAgent != null)
+        {
+            _navMeshAgent.destination = _player.transform.position;
+        }
+
         if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
         {
             if (_currentCoroutine.IsValid)

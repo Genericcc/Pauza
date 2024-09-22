@@ -814,6 +814,7 @@ GameObject:
   - component: {fileID: 8597613773846596064}
   - component: {fileID: 3035746426824265239}
   - component: {fileID: 69163650701467724}
+  - component: {fileID: 5592787206865018567}
   m_Layer: 0
   m_Name: Termite
   m_TagString: Untagged
@@ -990,7 +991,7 @@ CapsuleCollider:
   m_Radius: 0.87
   m_Height: 4.367196
   m_Direction: 2
-  m_Center: {x: -0.00955987, y: -0.72115004, z: 1.1070652}
+  m_Center: {x: -0.00955987, y: -0.72115004, z: -1.35}
 --- !u!114 &69163650701467724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,6 +1009,27 @@ MonoBehaviour:
     m_Bits: 64
   canPush: 1
   strength: 5
+--- !u!95 &5592787206865018567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952726052015118286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 365c180cc33038642916c70884ff4d5a, type: 3}
+  m_Controller: {fileID: 9100000, guid: c14a7cbd061e5654582030f83250d560, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4029949140848254014
 GameObject:
   m_ObjectHideFlags: 0
