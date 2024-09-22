@@ -21,14 +21,6 @@ namespace Activities
         [SerializeField]
         private int numberOfRequiredCogs;
         
-        private Material _material;
-
-        private void Awake()
-        {
-            _material = GetComponent<MeshRenderer>().material;
-            _material.color = Color.red;
-        }
-        
         protected override bool CanInteractWith(Player player)
         {
             if (!player.Inventory.Contains(requiredMainKeyItem.ItemData))
@@ -64,7 +56,6 @@ namespace Activities
             // }return Timing.WaitForOneFrame;
 
             isCompleted = true;
-            _material.color = Color.green;
             player.Free();
         }
     }
