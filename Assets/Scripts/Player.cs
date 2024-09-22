@@ -34,15 +34,15 @@ public class Player : MonoBehaviour
     private CameraShake _cameraShake;
     private Collider[] _colliders; 
     private bool _isOccupied;
-    private int _currentHp;
-    
+    public int CurrentHp { get; private set; }
+
     private PlayerSpawnPoint _spawnPoint;
 
     private void Awake()
     {
         if (Instance != null)
         {
-            throw new System.Exception("Player already exists");
+            Destroy(gameObject);
         } 
         
         Instance = this;        
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         _firstPersonController = GetComponent<FirstPersonController>();
         
         _colliders = new Collider[30];
-        _currentHp = 3;
+        CurrentHp = 3;
         
         _spawnPoint = FindObjectOfType<PlayerSpawnPoint>();
 
@@ -152,13 +152,13 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _currentHp--;
+        CurrentHp--;
 
         CameraShake.Instance.ShakeCamera();
        
         TripPlayer();
 
-        if (_currentHp <= 0)
+        if (CurrentHp <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

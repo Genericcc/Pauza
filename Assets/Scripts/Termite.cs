@@ -52,12 +52,6 @@ public class Termite : MonoBehaviour
     private TermiteSpawnPoint[] _spawnPoints;        
     
     public ParticleSystem particleSystemPrefab;
-    
-    [SerializeField]
-    private float jumpHeight;
-
-    [SerializeField]
-    private float sideStepModifier = 1;
 
     private NavMeshAgent _navMeshAgent;
     private Vector3 _lastPosition;
@@ -91,24 +85,21 @@ public class Termite : MonoBehaviour
         {
             return;
         }
-        
-        // if (!_currentCoroutine.IsValid)
-        // {
-        //     _moveTimer = moveTime;
-        //     _lastPlayerPosition = _player.transform.position;
-        //     _currentCoroutine = Timing.RunCoroutine(_MoveTowardsPlayer(_lastPlayerPosition).CancelWith(gameObject));
-        // }
 
         if (_navMeshAgent != null)
         {
             _navMeshAgent.destination = _player.transform.position;
         }
 
-        if (Vector3.Distance(_player.transform.position, transform.position) < killDistance && _attackTimer <= 0)
+        if (_attackTimer <= 0)
         {
-            Timing.RunCoroutine(_Attack().CancelWith(gameObject));
+            if (Vector3.Distance(_player.transform.position, transform.position) < killDistance)
+            {
+                _attackTimer = attackSpeed;
+                Timing.RunCoroutine(_Attack().CancelWith(gameObject));
+            }
         }
-        
+
         _moveTimer -= Time.deltaTime;
         
         CheckForBrokenPosition();
@@ -116,22 +107,24 @@ public class Termite : MonoBehaviour
 
     private IEnumerator<float> _Attack()
     {
-        _animator.Play("Attack");
-            
-        if (_currentCoroutine.IsValid)
-        {
-            Timing.KillCoroutines(_currentCoroutine);
-        }
+        // if (_currentCoroutine.IsValid)
+        // {
+        //     Timing.KillCoroutines(_currentCoroutine);
+        // }
 
-        yield return Timing.WaitForSeconds(2f);
+        var walkSpeed = _navMeshAgent.speed;
+        _navMeshAgent.speed = walkSpeed / 2;
+
+        _animator.Play("Attack");
+        yield return Timing.WaitForSeconds(1f);
 
         _player.Damage();
-        _attackTimer = attackSpeed;
         
         transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
         Stun(1f);
         
-        _animator.Play("Idle");
+        _animator.Play("Walk");
+        _navMeshAgent.speed = walkSpeed;
     }
 
     private void CheckForBrokenPosition()
@@ -162,13 +155,8 @@ public class Termite : MonoBehaviour
         {
             var playerDir = Vector3.Normalize(lastPlayerPosition - transform.position);
             var random = Random.Range(0f, 1f);
-            var offset = animationCurve.Evaluate(random) * sideStepModifier;
+            var offset = animationCurve.Evaluate(random);
             playerDir = new Vector3(playerDir.x + offset, playerDir.y, playerDir.z + offset);
-
-            if (lastPlayerPosition.y > transform.position.y)
-            {
-                playerDir += new Vector3(0, jumpHeight, 0).normalized;
-            }
 
             var newPosition = transform.position + playerDir * (moveSpeed * Time.fixedDeltaTime);
             _rigidBody.MovePosition(newPosition);
