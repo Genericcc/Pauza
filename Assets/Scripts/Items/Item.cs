@@ -22,7 +22,7 @@ namespace Items
         
         private SphereCollider _collider;
 
-        private void Start()
+        public virtual void Start()
         {
             _collider = GetComponent<SphereCollider>();
             _collider.radius = itemData.pickUpRange;

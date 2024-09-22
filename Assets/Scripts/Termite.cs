@@ -118,6 +118,12 @@ public class Termite : MonoBehaviour
         _animator.Play("Attack");
         yield return Timing.WaitForSeconds(1f);
 
+        if (_isStunned)
+        {
+            //TODO
+            //break attack
+        }
+
         _player.Damage();
         
         transform.position = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform.position;
@@ -171,6 +177,8 @@ public class Termite : MonoBehaviour
 
     public void Stun(float stunDuration)
     {
+        _animator.Play("Idle");
+        
         _isStunned = true;
         
         if (_currentCoroutine.IsValid)
@@ -196,6 +204,8 @@ public class Termite : MonoBehaviour
         {
             Destroy(_currentParticles.gameObject);
         }
+        
+        _animator.Play("Walk");
     }
     
     

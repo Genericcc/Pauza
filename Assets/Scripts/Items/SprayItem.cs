@@ -14,10 +14,13 @@ namespace Items
 
         public AudioSource AudioSource { get; private set; }
 
-        private void Start()
+        public override void Start()
         {
+            base.Start();
+            
              AudioSource = GetComponent<AudioSource>();
         }
+        
         public override void Use(Player player)
         {
             Debug.Log("Spray and pray!");

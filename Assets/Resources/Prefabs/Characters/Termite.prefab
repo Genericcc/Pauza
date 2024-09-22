@@ -914,13 +914,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  killDistance: 2
-  recheckPositionInterval: 1
-  attackSpeed: 3
+  killDistance: 3
+  recheckPositionInterval: 2
+  attackSpeed: 5
   particleSystemPrefab: {fileID: 2192027807692956946, guid: 040e4f7e43649e84e91a251e5b19d892,
     type: 3}
-  jumpHeight: 0
-  sideStepModifier: 1
 --- !u!195 &5386745220194369858
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -935,7 +933,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
