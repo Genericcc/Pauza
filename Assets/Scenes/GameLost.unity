@@ -429,7 +429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -505.51355, y: 327}
+  m_AnchoredPosition: {x: -505.51355, y: 403.92004}
   m_SizeDelta: {x: 832.2113, y: 127.0528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318638201
@@ -452,9 +452,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congratulations!
+  m_text: 'You Lost.
 
-    You woke up from the nightmatre.'
+    Try again.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb7fdbb9413737a4e8330d7dd228f070, type: 2}
   m_sharedMaterial: {fileID: -3732780989392256429, guid: cb7fdbb9413737a4e8330d7dd228f070,
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b70bfb1424839ae46bbcd2f64a60d3ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 963f003c80c01d44ab604f779e23f657, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
