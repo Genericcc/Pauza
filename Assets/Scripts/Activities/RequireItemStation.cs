@@ -14,6 +14,9 @@ namespace Activities
     {
         [SerializeField]
         private Item requiredMainKeyItem;
+        
+        [SerializeField]
+        private GameObject blocker;
 
         [SerializeField]
         private int numberOfRequiredCogs;
@@ -70,6 +73,8 @@ namespace Activities
 
             isCompleted = true;
             player.Free();
+            
+            blocker.SetActive(false);
         }
     }
 }
