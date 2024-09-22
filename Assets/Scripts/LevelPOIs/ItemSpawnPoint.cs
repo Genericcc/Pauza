@@ -23,11 +23,7 @@ namespace LevelPOIs
 
         public void SpawnItem()
         {
-            if (itemPrefab != null)
-            {
-                _itemGameObject = Instantiate(itemPrefab, transform.position, Quaternion.identity);
-            }
-
+            _itemGameObject = Instantiate(itemPrefab, transform.position, Quaternion.identity);
             LevelManager.Instance.spawnedItems.Add(_itemGameObject);
         }
     }
