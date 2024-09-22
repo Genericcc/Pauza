@@ -10,6 +10,8 @@ namespace Menu
     public class GameMenuManager : MonoBehaviour
     {
         private Player _player;
+        
+        [SerializeField]
         private GameObject _visual;
 
         private bool _isOpen;
@@ -17,10 +19,10 @@ namespace Menu
         private void Start()
         {
             _player = Player.Instance;
-            _visual = transform.GetChild(0).gameObject;
+            //_visual = transform.GetChild(0).gameObject;
             _isOpen = false;
             
-            Resume();
+            //Resume();
         }
 
         private void Update()
@@ -43,7 +45,7 @@ namespace Menu
         public void Stop()
         {
             _player.OnMenuOpened();
-            _visual.gameObject.SetActive(true);
+            _visual.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             _isOpen = true;
@@ -52,7 +54,7 @@ namespace Menu
         public void Resume()
         {
             _player.OnMenuClosed();
-            _visual.gameObject.SetActive(false);
+            _visual.SetActive(false);
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             _isOpen = false;
@@ -60,13 +62,7 @@ namespace Menu
         
         public void Quit()
         {
-            Timing.RunCoroutine(_LoadLevel());
-        } 
-
-        private IEnumerator<float> _LoadLevel()
-        {
-            yield return Timing.WaitForSeconds(1f);
             SceneManager.LoadScene(0);
-        }
+        } 
     }
 }

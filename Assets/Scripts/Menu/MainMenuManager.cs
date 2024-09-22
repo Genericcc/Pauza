@@ -21,6 +21,7 @@ namespace Menu
         [SerializeField]
         public GameObject buttonsPanel;
 
+
         private void Start()
         {
             Cursor.visible = true;
@@ -29,7 +30,7 @@ namespace Menu
         public void Play()
         {
             //SceneManager.LoadScene(1);
-            Timing.RunCoroutine(_LoadLevel());
+            Timing.RunCoroutine(_LoadLevel().CancelWith(gameObject));
         } 
 
         private IEnumerator<float> _LoadLevel()
