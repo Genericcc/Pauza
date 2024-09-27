@@ -106,13 +106,13 @@ MonoBehaviour:
   active: 1
   m_Grain:
     m_OverrideState: 1
-    m_Value: 0.185
+    m_Value: 0.15
   m_Noise:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   m_NoiseAlpha:
     m_OverrideState: 1
-    m_Value: 0.067
+    m_Value: 0.3
   m_Jolt:
     m_OverrideState: 1
     m_Value: 0.01
