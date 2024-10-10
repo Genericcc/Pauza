@@ -49,6 +49,7 @@ namespace Menu
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             _isOpen = true;
+            Cursor.visible = true;
         }
         
         public void Resume()
@@ -58,8 +59,9 @@ namespace Menu
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             _isOpen = false;
+            Cursor.visible = false;
         }
-        
+
         public void Quit()
         {
             SceneManager.LoadScene(0);
